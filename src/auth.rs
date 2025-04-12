@@ -236,6 +236,11 @@ extern "C" {
         email_link: String,
     ) -> Result<JsValue, JsValue>;
 
+    #[wasm_bindgen(js_name = signInAnonymously, catch)]
+    pub async fn sign_in_anonymously(
+        auth: Auth,
+    ) -> Result<JsValue, JsValue>;
+
     #[wasm_bindgen(js_name = isSignInWithEmailLink, )]
     pub fn is_sign_in_with_email_link(auth: Auth, email_link: &str) -> bool;
 
