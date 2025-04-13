@@ -3,7 +3,7 @@ mod user;
 use crate::FirebaseError;
 use std::{error::Error, fmt};
 pub use user::*;
-use wasm_bindgen::{prelude::*, JsCast};
+use wasm_bindgen::{JsCast, prelude::*};
 
 #[derive(Clone, Debug, derive_more::Deref)]
 pub struct AuthError {
@@ -237,9 +237,7 @@ extern "C" {
     ) -> Result<JsValue, JsValue>;
 
     #[wasm_bindgen(js_name = signInAnonymously, catch)]
-    pub async fn sign_in_anonymously(
-        auth: Auth,
-    ) -> Result<JsValue, JsValue>;
+    pub async fn sign_in_anonymously(auth: Auth) -> Result<JsValue, JsValue>;
 
     #[wasm_bindgen(js_name = isSignInWithEmailLink, )]
     pub fn is_sign_in_with_email_link(auth: Auth, email_link: &str) -> bool;
@@ -270,4 +268,7 @@ extern "C" {
         code: String,
         new_password: String,
     ) -> Result<(), JsValue>;
+
+    #[wasm_bindgen(js_name = connectAuthEmulator)]
+    pub fn connect_auth_emulator(auth: Auth, url: String);
 }

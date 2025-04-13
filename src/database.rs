@@ -26,4 +26,7 @@ extern "C" {
 
     #[wasm_bindgen(js_name = onValue)]
     pub fn on_value(ref_: Query, callback: &Closure<dyn FnMut(DataSnapshot)>) -> js_sys::Function;
+
+    #[wasm_bindgen(js_name = connectDatabaseEmulator)]
+    pub fn connect_database_emulator(database: Database, host: &str, port: u16);
 }
